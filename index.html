@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+    <head>
+        <title>SQL</title>
+        <meta charset='utf-8'/>
+        <link rel="stylesheet" type="text/css" href="./index.html_files/github-markdown.css">
+        <style>
+            .markdown-body {
+                box-sizing: border-box;
+                min-width: 200px;
+                max-width: 980px;
+                margin: 0 auto;
+                padding: 45px;
+            }
+        </style>
+        <script>
+            window.onload = function() {
+                if (document.querySelector("script[type=\"math/tex; mode=display\"]") !== null) {
+                    var mathjax = document.createElement("script");
+                    mathjax.src = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML";
+                    document.head.appendChild(mathjax);
+                }
+                if (document.getElementsByTagName("code").length !== 0) {
+                    var highlight = document.createElement("script");
+                    var highlightcss = document.createElement("link");
+                    highlight.src = "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js";
+                    highlightcss.rel = "stylesheet";
+                    highlightcss.href = "http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/github.min.css";
+                    highlight.onload = function() {hljs.initHighlighting();};
+                    document.head.appendChild(highlight);
+                    document.head.appendChild(highlightcss);
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <article class="markdown-body">
+            <p><img src="index.html_files\images\logo.png" alt="Image"></p>
+<h1 id="sql">SQL</h1>
+<h2 id="what-is-a-database">What is a database?</h2>
+<p>A database is a structured collection of data that allows efficient storage, retrieval, and management of information.</p>
+<h2 id="why-do-we-need-it">Why do we need it?</h2>
+<ul>
+<li>To keep data organized.</li><li>To allow data re-use in the future by applications or services.</li></ul>
+<h2 id="what-is-the-link-between-an-application-and-a-database">What is the link between an application and a database?</h2>
+<p>The connection between an application and a database is <strong>data</strong>. Applications use databases to store and retrieve data for processing.</p>
+<h2 id="examples-of-databases">Examples of databases</h2>
+<ul>
+<li>File systems (files and folders)</li><li>Relational databases like MySQL, PostgreSQL</li><li>NoSQL databases like MongoDB, Firebase</li></ul>
+<h2 id="why-do-we-need-a-database-application-server">Why do we need a Database Application Server?</h2>
+<p>A database application server provides:</p>
+<ul>
+<li>Speedy data access.</li><li>Data security and integrity.</li><li>Advanced functionalities such as indexing, transaction management, and querying.</li></ul>
+<h2 id="how-to-install-a-database">How to install a database?</h2>
+<h3 id="1-install-mysql-using-xampp">1. Install MySQL using XAMPP</h3>
+<ol>
+<li>Visit <a href="https://www.apachefriends.org/">Apache Friends</a>.</li><li>Download the XAMPP application.</li><li>Install it on your system.</li><li>Start the MySQL service via the XAMPP control panel.</li></ol>
+<hr>
+<h2 id="connecting-to-mysql">Connecting to MySQL</h2>
+<ul>
+<li>Use a MySQL client or command-line interface to connect to your database.</li><li>Test your connection with basic commands like <code>SHOW DATABASES;</code>.</li></ul>
+<hr>
+<h2 id="introduction-to-database-structure">Introduction to Database Structure</h2>
+<ul>
+<li><strong>Database</strong>: A collection of related data.</li><li><strong>Table</strong>: A structured format to store data in rows and columns.</li><li><strong>Rows</strong>: Individual records in a table.</li><li><strong>Other structures</strong>: Procedures, views, triggers.</li></ul>
+<hr>
+<h2 id="sql-basics-crud-operations">SQL Basics - CRUD Operations</h2>
+<h3 id="read-data-select">Read Data (SELECT)</h3>
+<h4 id="read-table-names-in-a-database">Read table names in a database</h4>
+<pre><code class="lang-sql">SHOW TABLES;
+</code></pre>
+<h4 id="describe-table-structure">Describe table structure</h4>
+<pre><code class="lang-sql">DESCRIBE etudiants;
+</code></pre>
+<h4 id="basic-select-query">Basic SELECT query</h4>
+<pre><code class="lang-sql">SELECT * FROM etudiants;
+</code></pre>
+<h4 id="select-with-aliases">SELECT with aliases</h4>
+<pre><code class="lang-sql">SELECT nom AS name, telephone AS subscribers FROM etudiants;
+</code></pre>
+<h4 id="select-with-where-clause">SELECT with WHERE clause</h4>
+<pre><code class="lang-sql">SELECT * FROM etudiants WHERE date_inscription = &#39;2024-12-01&#39;;
+</code></pre>
+<h4 id="select-with-like-operator">SELECT with LIKE operator</h4>
+<pre><code class="lang-sql">SELECT * FROM etudiants WHERE nom LIKE &#39;%a%&#39;;
+</code></pre>
+<h4 id="select-with-in-clause">SELECT with IN clause</h4>
+<pre><code class="lang-sql">SELECT * FROM etudiants WHERE nom IN (&#39;Moreau&#39;, &#39;Adam&#39;);
+</code></pre>
+<h4 id="select-with-order-by">SELECT with ORDER BY</h4>
+<pre><code class="lang-sql">SELECT * FROM etudiants ORDER BY date_naissance ASC;
+</code></pre>
+<h4 id="select-with-and-condition">SELECT with AND condition</h4>
+<pre><code class="lang-sql">SELECT * FROM etudiants WHERE date_naissance &lt;= &#39;2002-12-03&#39; AND nom LIKE &#39;%a%&#39;;
+</code></pre>
+<h4 id="select-with-or-condition">SELECT with OR condition</h4>
+<pre><code class="lang-sql">SELECT * FROM etudiants WHERE date_naissance &lt;= &#39;2002-12-03&#39; OR nom LIKE &#39;%a%&#39;;
+</code></pre>
+<h4 id="select-with-not-operator">SELECT with NOT operator</h4>
+<pre><code class="lang-sql">SELECT * FROM etudiants WHERE date_naissance &lt;= &#39;2002-12-03&#39; AND nom NOT LIKE &#39;%a%&#39;;
+</code></pre>
+<h4 id="count-function">COUNT function</h4>
+<pre><code class="lang-sql">SELECT COUNT(*) AS with_a_in_lastname FROM etudiants WHERE nom LIKE &#39;%a%&#39;;
+</code></pre>
+<h4 id="sum-function">SUM function</h4>
+<pre><code class="lang-sql">SELECT SUM(price) AS total_price FROM clients WHERE date_achat BETWEEN &#39;2022&#39; AND &#39;2023&#39;;
+</code></pre>
+<h4 id="join-examples">JOIN examples</h4>
+<pre><code class="lang-sql">SELECT enseignement_id, cours.nom_cours, CONCAT(professeurs.nom, &#39; &#39;, professeurs.prenom) AS professeur
+FROM enseignements
+JOIN cours ON cours.cours_id = enseignements.cours_id
+JOIN professeurs ON professeurs.professeur_id = enseignements.professeur_id;
+</code></pre>
+<hr>
+<h3 id="create-data-insert">Create Data (INSERT)</h3>
+<h4 id="insert-a-row-into-a-table">Insert a row into a table</h4>
+<pre><code class="lang-sql">INSERT INTO etudiants (nom, prenom, date_naissance, email, telephone, date_inscription)
+VALUES (&#39;Berto&#39;, &#39;Ro&#39;, &#39;1998-01-30&#39;, &#39;ariel@webschool.co.il&#39;, &#39;0567890989&#39;, &#39;2024-12-03&#39;);
+</code></pre>
+<h3 id="update-data-update">Update Data (UPDATE)</h3>
+<h4 id="update-a-row-in-a-table">Update a row in a table</h4>
+<pre><code class="lang-sql">UPDATE etudiants
+SET nom = &#39;Sarkozy&#39;, prenom = &#39;Nicola&#39;
+WHERE etudiant_id = 3;
+</code></pre>
+<h3 id="delete-data-delete">Delete Data (DELETE)</h3>
+<h4 id="delete-a-row-from-a-table">Delete a row from a table</h4>
+<pre><code class="lang-sql">DELETE FROM etudiants WHERE etudiant_id = 2;
+</code></pre>
+<hr>
+<h3 id="database-management">Database Management</h3>
+<h4 id="create-a-new-database">Create a new database</h4>
+<pre><code class="lang-sql">CREATE DATABASE website;
+</code></pre>
+<h4 id="drop-a-database">Drop a database</h4>
+<pre><code class="lang-sql">DROP DATABASE website;
+</code></pre>
+<h4 id="select-a-database">Select a database</h4>
+<pre><code class="lang-sql">USE website;
+</code></pre>
+<h4 id="create-a-table">Create a table</h4>
+<pre><code class="lang-sql">CREATE TABLE menu (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(50),
+    href VARCHAR(200)
+);
+</code></pre>
+<h4 id="drop-a-table">Drop a table</h4>
+<pre><code class="lang-sql">DROP TABLE menu;
+</code></pre>
+<h4 id="modify-a-table-structure">Modify a table structure</h4>
+<pre><code class="lang-sql">ALTER TABLE menu DROP COLUMN href;
+</code></pre>
+<hr>
+<h2 id="advanced-topics">Advanced Topics</h2>
+<h3 id="introduction-to-postman">Introduction to Postman</h3>
+<p>Postman is a tool for testing APIs, which can interact with databases through REST APIs.</p>
+<h3 id="introduction-to-rest-apis">Introduction to REST APIs</h3>
+<p>REST APIs enable communication between a client and server using HTTP methods like GET, POST, PUT, DELETE.</p>
+<h3 id="introduction-to-flask-and-sql-in-python">Introduction to Flask and SQL in Python</h3>
+<p>Use Python&#39;s Flask framework to build web applications and connect to MySQL using a MySQL driver.</p>
+<hr>
+<p>Ready to dive deeper? 🚀</p>
+
+        </article>
+    </body>
+</html>
